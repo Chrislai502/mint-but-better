@@ -101,7 +101,7 @@ def categorize_transaction(row):
         return 'Other'
 
 def main():
-    st.markdown('<div class="main-header">💰 Finance Analyzer Dashboard</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">🌿 Open Mint </div>', unsafe_allow_html=True)
     
     # Initialize ignore list manager
     ignore_manager = IgnoreListManager()

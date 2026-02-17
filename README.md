@@ -1,6 +1,6 @@
 # Open Mint 🌿📈
 
-A personal finance expense analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
+An all-Python personal finance expense analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
 
 ## Quick Start
 

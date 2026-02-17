@@ -18,8 +18,8 @@ DATA_FILE = PROJECT_ROOT / 'data' / 'processed' / 'all_transactions.csv'
 
 # Page configuration
 st.set_page_config(
-    page_title="Finance Analyzer Dashboard",
-    page_icon="💰",
+    page_title="Open Mint",
+    page_icon="🌿",
     layout="wide",
     initial_sidebar_state="expanded"
 )

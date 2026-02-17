@@ -1,6 +1,6 @@
-# Finance Analyzer 📈
+# Better Mint 🌿📈
 
-A comprehensive personal finance analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
+A personal finance expense analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
 
 ## Quick Start
 

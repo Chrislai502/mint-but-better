@@ -2,6 +2,8 @@
 
 An all-Python personal finance expense analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
 
+Vibe Coded with Claude Code.
+
 ## Quick Start
 
 If you don't have UV package manager, install UV first:

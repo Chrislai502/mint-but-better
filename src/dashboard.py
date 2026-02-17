@@ -83,13 +83,25 @@ def load_data(file_path=None):
 
 def categorize_transaction(row):
     """
-    Categorize credit card transactions correctly:
-    - Purchase/Sale = Expense (regardless of sign, different cards use different conventions)
+    Categorize credit card transactions correctly.
+    
+    After amount normalization, all cards follow this convention:
+    - Positive amounts = Expenses (money you spent)
+    - Negative amounts = Refunds/Payments (money coming back)
+    
+    Transaction types:
+    - Purchase/Sale = Expense
     - Return = Refund (reduces expenses)
     - Payment = Credit card payment (excluded from expense calculations)
     """
     transaction_type = str(row['Type']).strip().lower()
+    category = str(row.get('Category', '')).strip().lower()
     
+    # Check category first (for auto-assigned "Payment" categories)
+    if category == 'payment':
+        return 'Payment'
+    
+    # Then check transaction type
     if transaction_type == 'payment':
         return 'Payment'
     elif transaction_type == 'return':
@@ -97,8 +109,12 @@ def categorize_transaction(row):
     elif transaction_type in ['purchase', 'sale']:
         return 'Expense'
     else:
-        # Fallback for unknown types
-        return 'Other'
+        # Fallback: use amount sign
+        # Positive = Expense, Negative = Refund/Payment
+        if row['Amount'] < 0:
+            return 'Refund'
+        else:
+            return 'Expense'
 
 def main():
     st.markdown('<div class="main-header">🌿 Finley </div>', unsafe_allow_html=True)
@@ -266,13 +282,20 @@ def main():
     if len(filtered_df) > 0:
         min_amount = float(filtered_df['Amount'].min())
         max_amount = float(filtered_df['Amount'].max())
-        amount_range = st.sidebar.slider(
-            "Filter by amount:",
-            min_value=min_amount,
-            max_value=max_amount,
-            value=(min_amount, max_amount),
-            format="$%.2f"
-        )
+        
+        # Handle edge case where all amounts are the same
+        if min_amount == max_amount:
+            st.sidebar.info(f"All filtered transactions: ${abs(min_amount):,.2f}")
+            amount_range = (min_amount, max_amount)
+        else:
+            amount_range = st.sidebar.slider(
+                "Filter by amount:",
+                min_value=min_amount,
+                max_value=max_amount,
+                value=(min_amount, max_amount),
+                format="$%.2f"
+            )
+        
         filtered_df = filtered_df[
             (filtered_df['Amount'] >= amount_range[0]) & 
             (filtered_df['Amount'] <= amount_range[1])

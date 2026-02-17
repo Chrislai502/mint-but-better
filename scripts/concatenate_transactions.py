@@ -17,6 +17,16 @@ PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / 'data' / 'input'
 OUTPUT_FILE = PROJECT_ROOT / 'data' / 'processed' / 'all_transactions.csv'
 
+# List of example files that should be excluded when real data exists
+EXAMPLE_FILES = [
+    'example_apple.csv',
+    'example_chase.csv',
+    'example_bilt.csv'
+]
+
+# Note: example_ignored_transactions.json is stored separately in data/config/
+# It provides an example format for the ignored transactions feature
+
 def normalize_merchant(merchant):
     """
     Normalize merchant names by consolidating common variations.
@@ -107,9 +117,49 @@ def parse_date(date_str):
     except:
         return datetime.min
 
+def auto_assign_category(row):
+    """
+    Automatically assign category based on transaction type and description.
+    This reduces manual category assignment work.
+    """
+    # If category already exists and is not empty, keep it
+    if row.get('Category') and row['Category'].strip():
+        return row['Category']
+    
+    transaction_type = str(row.get('Type', '')).strip().lower()
+    description = str(row.get('Description', '')).upper()
+    
+    # Auto-assign based on transaction type
+    if transaction_type == 'payment':
+        return 'Payment'
+    elif transaction_type == 'return':
+        return 'Refund'
+    
+    # Auto-assign based on description patterns
+    if 'PAYMENT' in description or 'ACH DEPOSIT' in description or 'ACH CREDIT' in description:
+        return 'Payment'
+    
+    # Rent payments
+    if 'BILT RENT' in description or 'BILTPROTECT RENT' in description:
+        return 'Rent'
+    
+    # Insurance
+    if 'INSURANCE' in description:
+        return 'Insurance'
+    
+    # Daily cash redemption (Apple Card)
+    if 'DAILY CASH REDEMPTION' in description:
+        return 'Payment'
+    
+    # If no pattern matches, leave empty for manual assignment
+    return ''
+
 def load_chase_file(filepath, source_name):
     """Load a Chase CSV file (chase_sapphire_preferred, chase_freedom_unlimited, bilt)."""
     rows = []
+    is_bilt = 'bilt' in filepath.name.lower()
+    is_chase = any(x in filepath.name.lower() for x in ['chase', 'sapphire', 'freedom'])
+    
     with open(filepath, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -118,6 +168,24 @@ def load_chase_file(filepath, source_name):
             if 'Merchant' not in row or not row.get('Merchant'):
                 row['Merchant'] = row.get('Description', '')
             row['Normalized Merchant'] = normalize_merchant(row.get('Merchant', ''))
+            
+            # Auto-assign category if possible
+            row['Category'] = auto_assign_category(row)
+            
+            # Normalize amount signs to standard convention:
+            # Standard: Positive = Expenses, Negative = Refunds/Payments
+            # - Apple: Already follows this (positive = expenses)
+            # - Bilt: Already flipped in previous update (positive = expenses)
+            # - Chase: Uses opposite (negative = expenses), need to flip
+            if is_chase:
+                # For Chase: flip the sign so expenses become positive
+                amount = float(row.get('Amount', 0))
+                row['Amount'] = str(-amount)
+            elif is_bilt:
+                # Bilt: Already flipped previously, keep the flip
+                amount = float(row.get('Amount', 0))
+                row['Amount'] = str(-amount)
+            
             rows.append(row)
     return rows
 
@@ -132,6 +200,11 @@ def load_apple_file(filepath, source_name):
             # Standard: Transaction Date, Post Date, Description, Merchant, Category, Type, Amount, Memo
             
             merchant = row.get('Merchant', row.get('Description', ''))
+            
+            # Apple already uses the standard convention (positive = expenses, negative = refunds)
+            # No sign normalization needed
+            amount = row.get('Amount (USD)', '0')
+            
             new_row = {
                 'Transaction Date': row.get('Transaction Date', ''),
                 'Post Date': row.get('Clearing Date', ''),
@@ -140,10 +213,14 @@ def load_apple_file(filepath, source_name):
                 'Normalized Merchant': normalize_merchant(merchant),
                 'Category': row.get('Category', ''),
                 'Type': row.get('Type', ''),
-                'Amount': row.get('Amount (USD)', ''),
+                'Amount': amount,
                 'Memo': '',
                 'Source': source_name
             }
+            
+            # Auto-assign category if missing
+            new_row['Category'] = auto_assign_category(new_row)
+            
             rows.append(new_row)
     return rows
 
@@ -174,12 +251,23 @@ def concatenate_transactions(data_dir=None, output_file=None):
     all_rows = []
     
     # Get all CSV files in the directory
-    csv_files = list(data_path.glob('*.csv')) + list(data_path.glob('*.CSV'))
+    all_csv_files = list(data_path.glob('*.csv')) + list(data_path.glob('*.CSV'))
     
-    if not csv_files:
+    if not all_csv_files:
         raise ValueError(f"No CSV files found in {data_path}")
     
-    print(f"Found {len(csv_files)} CSV file(s) to process:")
+    # Check if there are any real (non-example) data files
+    real_files = [f for f in all_csv_files if f.name not in EXAMPLE_FILES]
+    
+    # If real files exist, exclude example files; otherwise use example files
+    if real_files:
+        csv_files = real_files
+        print(f"\n✓ Found {len(real_files)} real data file(s) - excluding {len([f for f in all_csv_files if f.name in EXAMPLE_FILES])} example file(s)")
+    else:
+        csv_files = all_csv_files
+        print(f"\n⚠ No real data files found - using {len(csv_files)} example file(s) for demonstration")
+    
+    print(f"\nProcessing {len(csv_files)} CSV file(s):")
     
     for csv_file in csv_files:
         source_name = extract_card_name(csv_file.name)

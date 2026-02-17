@@ -1,17 +1,16 @@
 Transaction Date,Post Date,Description,Merchant,Category,Type,Amount,Memo
-2026-02-15,2026-02-16,TRADER JOE'S #543 BERKELEY CA,Trader Joe's,Groceries,Sale,-67.34,Weekly grocery shopping
-2026-02-14,2026-02-15,AMAZON.COM*AB4K9L23,Amazon,Shopping,Sale,-129.99,Electronics purchase
-2026-02-13,2026-02-14,SHELL OIL 57483290473,Shell,Gas/Fuel,Sale,-45.00,Gas fill-up
-2026-02-12,2026-02-13,STARBUCKS STORE 12345,Starbucks,Dining,Sale,-12.67,Coffee and breakfast
-2026-02-10,2026-02-11,SOUTHWEST AIR 8392010,Southwest Airlines,Travel,Sale,-287.50,Flight to Austin
-2026-02-09,2026-02-10,WHOLE FOODS MKT #10542,Whole Foods,Groceries,Sale,-89.45,
-2026-02-08,2026-02-09,NETFLIX.COM,Netflix,Entertainment,Sale,-15.99,Monthly subscription
-2026-02-05,2026-02-06,UBER *TRIP,Uber,Transportation,Sale,-23.45,Ride to airport
-2026-02-04,2026-02-05,TARGET T-1234,Target,Shopping,Sale,-145.67,Household items
-2026-02-03,2026-02-04,CHIPOTLE 2468,Chipotle,Dining,Sale,-18.90,Lunch
-2026-02-01,2026-02-02,PAYMENT THANK YOU,Payment,Payment,Payment,500.00,Credit card payment
-2026-01-30,2026-01-31,COSTCO WHSE #0123,Costco,Groceries,Sale,-234.56,Bulk shopping
-2026-01-28,2026-01-29,CHEVRON 0092345,Chevron,Gas/Fuel,Sale,-52.00,
-2026-01-25,2026-01-26,AMAZON PRIME*REFUND,Amazon,Shopping,Return,129.99,Returned item
-2026-01-24,2026-01-25,SPOTIFY USA,Spotify,Entertainment,Sale,-9.99,
-
+02/15/2026,02/16/2026,TRADER JOE'S #543 BERKELEY CA,Trader Joe's,Groceries,Sale,-67.34,Weekly grocery shopping
+02/14/2026,02/15/2026,AMAZON.COM*AB4K9L23,Amazon,Shopping,Sale,-129.99,Electronics purchase
+02/13/2026,02/14/2026,SHELL OIL 57483290473,Shell,Gas/Fuel,Sale,-45.00,Gas fill-up
+02/12/2026,02/13/2026,STARBUCKS STORE 12345,Starbucks,Dining,Sale,-12.67,Coffee and breakfast
+02/10/2026,02/11/2026,SOUTHWEST AIR 8392010,Southwest Airlines,Travel,Sale,-287.50,Flight to Austin
+02/09/2026,02/10/2026,WHOLE FOODS MKT #10542,Whole Foods,Groceries,Sale,-89.45,
+02/08/2026,02/09/2026,NETFLIX.COM,Netflix,Entertainment,Sale,-15.99,Monthly subscription
+02/05/2026,02/06/2026,UBER *TRIP,Uber,Transportation,Sale,-23.45,Ride to airport
+02/04/2026,02/05/2026,TARGET T-1234,Target,Shopping,Sale,-145.67,Household items
+02/03/2026,02/04/2026,CHIPOTLE 2468,Chipotle,Dining,Sale,-18.90,Lunch
+02/01/2026,02/02/2026,PAYMENT THANK YOU,Payment,Payment,Payment,500.00,Credit card payment
+01/30/2026,01/31/2026,COSTCO WHSE #0123,Costco,Groceries,Sale,-234.56,Bulk shopping
+01/28/2026,01/29/2026,CHEVRON 0092345,Chevron,Gas/Fuel,Sale,-52.00,
+01/25/2026,01/26/2026,AMAZON PRIME*REFUND,Amazon,Shopping,Return,129.99,Returned item
+01/24/2026,01/25/2026,SPOTIFY USA,Spotify,Entertainment,Sale,-9.99,

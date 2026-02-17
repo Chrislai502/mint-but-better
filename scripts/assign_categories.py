@@ -12,11 +12,21 @@ from datetime import datetime
 
 # Get the project root directory (parent of scripts/)
 PROJECT_ROOT = Path(__file__).parent.parent
+DEFAULT_CSV = PROJECT_ROOT / 'data' / 'processed' / 'all_transactions.csv'
 
 class CategoryAssigner:
     def __init__(self, csv_file=None):
         if csv_file is None:
-            csv_file = PROJECT_ROOT / 'data' / 'processed' / 'all_transactions.csv'
+            csv_file = DEFAULT_CSV
+        else:
+            csv_file = Path(csv_file)
+        
+        if not csv_file.exists():
+            raise FileNotFoundError(
+                f"Transaction file not found: {csv_file}\n\n"
+                f"Please run 'uv run python scripts/concatenate_transactions.py' first to generate the file."
+            )
+        
         self.csv_file = csv_file
         self.df = pd.read_csv(csv_file)
         self.changes_made = False
@@ -233,15 +243,9 @@ class CategoryAssigner:
     def _save_changes(self):
         """Save changes to CSV file."""
         if self.changes_made:
-            # Backup original file
-            backup_file = f"{self.csv_file}.backup.{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-            self.df.to_csv(backup_file, index=False)
-            print(f"\n💾 Backup saved to: {backup_file}")
-            
-            # Save updated file
+            # Save updated file directly (no backup needed since file is generated on-the-fly)
             self.df.to_csv(self.csv_file, index=False)
-            print(f"✓ Changes saved to: {self.csv_file}")
-            print(f"✓ Total changes made: {self.changes_made}")
+            print(f"\n✓ Changes saved to: {self.csv_file}")
         else:
             print("\nℹ️  No changes made")
     
@@ -276,11 +280,15 @@ def main():
     parser.add_argument('--categories', action='store_true', help='Assign missing categories')
     parser.add_argument('--merchants', action='store_true', help='Assign missing merchants')
     parser.add_argument('--stats', action='store_true', help='Show statistics only')
-    parser.add_argument('--file', default='all_transactions.csv', help='CSV file to process')
+    parser.add_argument('--file', default=None, help='CSV file to process (default: data/processed/all_transactions.csv)')
     
     args = parser.parse_args()
     
-    assigner = CategoryAssigner(args.file)
+    try:
+        assigner = CategoryAssigner(args.file)
+    except FileNotFoundError as e:
+        print(f"\n❌ {e}")
+        return 1
     
     if args.stats or (not args.categories and not args.merchants):
         assigner.show_stats()

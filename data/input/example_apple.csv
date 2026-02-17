@@ -1,17 +1,16 @@
-Transaction Date,Post Date,Description,Merchant,Category,Type,Amount,Memo
-2026-02-16,2026-02-17,APPLE.COM/BILL,Apple,Technology,Sale,-2.99,iCloud storage
-2026-02-15,2026-02-16,SAFEWAY #1234,Safeway,Groceries,Sale,-78.45,
-2026-02-14,2026-02-15,LYFT *RIDE,Lyft,Transportation,Sale,-15.67,
-2026-02-13,2026-02-14,THE HOME DEPOT #5678,Home Depot,Home Improvement,Sale,-156.78,Hardware supplies
-2026-02-12,2026-02-13,PANERA BREAD #1234,Panera Bread,Dining,Sale,-24.56,
-2026-02-10,2026-02-11,APPLE STORE #R123,Apple Store,Technology,Sale,-199.00,AirPods
-2026-02-08,2026-02-09,CVS/PHARMACY #09876,CVS,Healthcare,Sale,-34.50,Prescriptions
-2026-02-07,2026-02-08,SHELL OIL,Shell,Gas/Fuel,Sale,-48.90,
-2026-02-05,2026-02-06,AMC THEATRES #1234,AMC,Entertainment,Sale,-32.00,Movie tickets
-2026-02-04,2026-02-05,PEET'S COFFEE,Peet's Coffee,Dining,Sale,-8.45,
-2026-02-01,2026-02-02,MONTHLY PAYMENT,Payment,Payment,Payment,300.00,Auto-payment
-2026-01-30,2026-01-31,PETCO #543,Petco,Pets,Sale,-67.89,Pet supplies
-2026-01-28,2026-01-29,REI #123,REI,Shopping,Sale,-145.67,Outdoor gear
-2026-01-25,2026-01-26,DOORDASH*RESTAURANT,DoorDash,Dining,Sale,-45.78,Food delivery
-2026-01-22,2026-01-23,APPLE.COM/BILL REFUND,Apple,Technology,Return,2.99,Cancelled subscription
-
+Transaction Date,Clearing Date,Description,Merchant,Category,Type,Amount (USD),Purchased By
+02/16/2026,02/17/2026,APPLE.COM/BILL,Apple,Technology,Purchase,2.99,John Doe
+02/15/2026,02/16/2026,SAFEWAY #1234,Safeway,Groceries,Purchase,78.45,John Doe
+02/14/2026,02/15/2026,LYFT *RIDE,Lyft,Transportation,Purchase,15.67,John Doe
+02/13/2026,02/14/2026,THE HOME DEPOT #5678,Home Depot,Home Improvement,Purchase,156.78,John Doe
+02/12/2026,02/13/2026,PANERA BREAD #1234,Panera Bread,Dining,Purchase,24.56,John Doe
+02/10/2026,02/11/2026,APPLE STORE #R123,Apple Store,Technology,Purchase,199.00,John Doe
+02/08/2026,02/09/2026,CVS/PHARMACY #09876,CVS,Healthcare,Purchase,34.50,John Doe
+02/07/2026,02/08/2026,SHELL OIL,Shell,Gas/Fuel,Purchase,48.90,John Doe
+02/05/2026,02/06/2026,AMC THEATRES #1234,AMC,Entertainment,Purchase,32.00,John Doe
+02/04/2026,02/05/2026,PEET'S COFFEE,Peet's Coffee,Dining,Purchase,8.45,John Doe
+02/01/2026,02/02/2026,ACH DEPOSIT INTERNET TRANSFER FROM ACCOUNT,Payment/Transfer,Payment,Payment,-300.00,John Doe
+01/30/2026,01/31/2026,PETCO #543,Petco,Pets,Purchase,67.89,John Doe
+01/28/2026,01/29/2026,REI #123,REI,Shopping,Purchase,145.67,John Doe
+01/25/2026,01/26/2026,DOORDASH*RESTAURANT,DoorDash,Dining,Purchase,45.78,John Doe
+01/22/2026,01/23/2026,APPLE.COM/BILL REFUND,Apple,Technology,Return,-2.99,John Doe

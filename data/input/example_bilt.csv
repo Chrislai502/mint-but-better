@@ -1,12 +1,11 @@
 Transaction Date,Post Date,Description,Merchant,Category,Type,Amount,Memo
-2026-02-01,2026-02-01,BILTPROTECT RENT ACH CREDIT,Bilt Rent Protection,Payment,Payment,2500.00,Monthly rent payment
-2026-02-01,2026-02-01,BPS*BILT RENT NEW YORK NY,Bilt Rent Payment,Rent,Sale,-2500.00,Rent payment for February
-2026-01-31,2026-02-01,DUNKIN #345678,Dunkin',Dining,Sale,-8.45,Coffee
-2026-01-28,2026-01-29,SWEETGREEN,Sweetgreen,Dining,Sale,-15.67,Lunch
-2026-01-25,2026-01-26,WALGREENS #12345,Walgreens,Healthcare,Sale,-23.45,
-2026-01-20,2026-01-21,HILTON HOTELS,Hilton,Travel,Sale,-345.67,Hotel stay
-2026-01-15,2026-01-16,UNITED AIRLINES,United Airlines,Travel,Sale,-456.78,Flight booking
-2026-01-10,2026-01-11,MTA METROCARD,MTA,Transportation,Sale,-33.00,Monthly metro pass
-2026-01-05,2026-01-06,FAIRWAY MARKET,Fairway Market,Groceries,Sale,-56.78,
-2026-01-02,2026-01-03,PAYMENT RECEIVED,Payment,Payment,Payment,1000.00,Manual payment
-
+02/01/2026,02/01/2026,BILTPROTECT RENT ACH CREDIT,Bilt Rent Protection,Payment,Payment,2500.00,Monthly rent payment
+02/01/2026,02/01/2026,BPS*BILT RENT NEW YORK NY,Bilt Rent Payment,Rent,Sale,-2500.00,Rent payment for February
+01/31/2026,02/01/2026,DUNKIN #345678,Dunkin',Dining,Sale,-8.45,Coffee
+01/28/2026,01/29/2026,SWEETGREEN,Sweetgreen,Dining,Sale,-15.67,Lunch
+01/25/2026,01/26/2026,WALGREENS #12345,Walgreens,Healthcare,Sale,-23.45,
+01/20/2026,01/21/2026,HILTON HOTELS,Hilton,Travel,Sale,-345.67,Hotel stay
+01/15/2026,01/16/2026,UNITED AIRLINES,United Airlines,Travel,Sale,-456.78,Flight booking
+01/10/2026,01/11/2026,MTA METROCARD,MTA,Transportation,Sale,-33.00,Monthly metro pass
+01/05/2026,01/06/2026,FAIRWAY MARKET,Fairway Market,Groceries,Sale,-56.78,
+01/02/2026,01/03/2026,PAYMENT RECEIVED,Payment,Payment,Payment,1000.00,Manual payment

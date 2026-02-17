@@ -44,13 +44,17 @@ Open your browser to `http://localhost:8501`
 finance_analyzer/
 ├── data/
 │   ├── input/              # Your CSV files go here
+│   │   ├── example_*.csv   # Example files (auto-excluded with real data)
 │   ├── processed/          # Generated consolidated data
 │   └── config/             # App configuration
+│       └── example_ignored_transactions.json  # Example format
 ├── src/                    # Main application code
 ├── scripts/                # Data processing scripts
 ├── docs/                   # Full documentation
 └── pyproject.toml          # Project dependencies
 ```
+
+**Note:** Example files (`example_apple.csv`, `example_chase.csv`, `example_bilt.csv`) are automatically excluded from processing when real transaction files are present. They're kept in the repository to demonstrate the expected CSV format.
 
 ## Documentation
 

@@ -1,8 +1,8 @@
-# Open Mint 🌿📈
+# Open Mint 🌿
 
 An all-Python personal finance expense analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
 
-Vibe Coded with Claude Code.
+<img width="1837" height="927" alt="openMint" src="https://github.com/user-attachments/assets/7448a438-eb1e-48e9-9f3e-8a2a166f247a" />
 
 ## Quick Start
 

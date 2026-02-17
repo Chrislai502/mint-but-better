@@ -106,11 +106,40 @@ def main():
     # Initialize ignore list manager
     ignore_manager = IgnoreListManager()
     
-    # Load data
+    # Load data - automatically concatenate if needed
     try:
+        # Check if the data file exists
+        if not DATA_FILE.exists():
+            st.warning("⚠️ Transaction data not found. Running concatenation script...")
+            
+            # Import and run concatenation
+            import sys
+            sys.path.insert(0, str(PROJECT_ROOT / 'scripts'))
+            
+            try:
+                from concatenate_transactions import concatenate_transactions
+                
+                with st.spinner("🔄 Consolidating transaction files..."):
+                    concatenate_transactions()
+                
+                st.success("✅ Successfully consolidated transaction files!")
+                st.rerun()
+                
+            except FileNotFoundError as e:
+                st.error(f"❌ Error: No CSV files found in `data/input/` directory.")
+                st.info("💡 **Next Steps:**\n\n"
+                       "1. Place your credit card CSV files in the `data/input/` directory\n"
+                       "2. Supported formats: Chase, Apple Card, Bilt\n"
+                       "3. For other cards, see [AGENTS.md](../docs/AGENTS.md) for conversion help")
+                st.stop()
+            except Exception as e:
+                st.error(f"❌ Error during concatenation: {e}")
+                st.info("Please check your CSV files and try running `scripts/concatenate_transactions.py` manually.")
+                st.stop()
+        
         df = load_data()
     except FileNotFoundError:
-        st.error(f"❌ Error: {DATA_FILE} not found. Please run scripts/concatenate_transactions.py first.")
+        st.error(f"❌ Error: {DATA_FILE} not found after concatenation attempt.")
         st.stop()
     
     # Filter out ignored transactions early

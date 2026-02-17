@@ -1,0 +1,54 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# UV dependencies
+uv.lock
+
+# Data files (user's actual transactions - keep private)
+data/input/*.csv
+data/input/*.CSV
+data/processed/*.csv
+data/processed/*.json
+data/config/ignored_transactions.json
+
+# Keep example files for documentation
+!data/input/example_*.csv
+!data/config/example_*.json
+
+# Backup files
+*.backup.*
+backups/
+data/processed/backups/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.directory
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+.cache/

@@ -1,0 +1,74 @@
+# Finance Analyzer 📈
+
+A comprehensive personal finance analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
+
+## Quick Start
+
+If you don't have UV package manager, install UV first:
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+Then, install the dependencies for the project and launch the dashboard!
+
+```bash
+# 1. Install dependencies
+uv sync
+
+# 2. Place your CSV transaction files in data/input/
+cp /path/to/your/*.csv data/input/
+
+# 3. Consolidate transactions
+uv run python scripts/concatenate_transactions.py
+
+# 4. Launch dashboard
+./run_dashboard.sh
+```
+
+Open your browser to `http://localhost:8501`
+
+## Features
+
+✨ **Interactive Dashboard** with dynamic filtering and visualizations  
+📊 **Multi-card Support** - Primarily for Apple Card, Chase Sapphire, Chase Freedom, and Bilt  
+🎯 **Smart Merchant Normalization** (Amazon variations → "Amazon")  
+🚫 **Transaction Ignore List** for excluding specific charges  
+📈 **Visual Analytics** with charts and graphs  
+💾 **Export Capabilities** for filtered data  
+🤖 **AI-Assisted Setup** - Use ChatGPT/Claude to format CSVs from other card providers  
+
+## Project Structure
+
+```
+finance_analyzer/
+├── data/
+│   ├── input/              # Your CSV files go here
+│   ├── processed/          # Generated consolidated data
+│   └── config/             # App configuration
+├── src/                    # Main application code
+├── scripts/                # Data processing scripts
+├── docs/                   # Full documentation
+└── pyproject.toml          # Project dependencies
+```
+
+## Documentation
+
+See [`docs/README.md`](docs/README.md) for complete documentation including:
+- Detailed installation instructions
+- Feature guides
+- Troubleshooting
+- Advanced usage
+
+**Using a different credit card?** See [`docs/AGENTS.md`](docs/AGENTS.md) for instructions on using AI to format your CSVs.
+
+## Requirements
+
+- Python 3.9+
+- uv package manager
+
+## Data Privacy
+
+🔒 All processing happens locally on your machine. No data leaves your computer.
+
+## License
+
+MIT License

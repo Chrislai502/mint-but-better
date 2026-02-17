@@ -1,0 +1,37 @@
+[project]
+name = "finance-analyzer"
+version = "1.0.0"
+description = "Personal finance dashboard and analysis tools for credit card transactions"
+readme = "docs/README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Finance Analyzer Team"}
+]
+keywords = ["finance", "credit-card", "analysis", "dashboard", "streamlit"]
+
+dependencies = [
+    "pandas>=2.0.0",
+    "streamlit>=1.30.0",
+    "plotly>=5.18.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+finance-dashboard = "src.dashboard:main"
+finance-concat = "scripts.concatenate_transactions:main"
+finance-assign = "scripts.assign_categories:main"
+
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src", "scripts"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.json"]

@@ -1,0 +1,21 @@
+{
+  "example_transaction_id_1": {
+    "date": "2026-02-06",
+    "description": "BEST WESTERN UNIVERSIT",
+    "merchant": "Best Western",
+    "category": "Travel",
+    "amount": -1233.07,
+    "source": "Chase Sapphire Preferred",
+    "ignored_at": "2026-02-16T17:00:00.000000"
+  },
+  "example_transaction_id_2": {
+    "date": "2026-01-15",
+    "description": "REIMBURSED EXPENSE",
+    "merchant": "Office Supplies Co",
+    "category": "Business",
+    "amount": -234.56,
+    "source": "Chase Freedom Unlimited",
+    "ignored_at": "2026-02-16T17:15:00.000000"
+  }
+}
+

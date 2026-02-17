@@ -18,7 +18,7 @@ DATA_FILE = PROJECT_ROOT / 'data' / 'processed' / 'all_transactions.csv'
 
 # Page configuration
 st.set_page_config(
-    page_title="Open Mint",
+    page_title="Finley",
     page_icon="🌿",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -101,7 +101,7 @@ def categorize_transaction(row):
         return 'Other'
 
 def main():
-    st.markdown('<div class="main-header">🌿 Open Mint </div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">🌿 Finley </div>', unsafe_allow_html=True)
     
     # Initialize ignore list manager
     ignore_manager = IgnoreListManager()

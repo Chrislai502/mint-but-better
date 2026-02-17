@@ -1,4 +1,4 @@
-# Open Mint 🌿
+# Finley 🌿
 
 An all-Python expense analysis tool with an interactive dashboard for tracking credit card transactions across multiple cards.
 
